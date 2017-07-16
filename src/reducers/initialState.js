@@ -3,7 +3,9 @@ export default {
     loading: false,
     error: false,
     partialCity: '',
+    selectedCity: '',
     matchingCities: [],
+    weatherData: null,
     firstCity: {
       name: null,
       curTemp: null,

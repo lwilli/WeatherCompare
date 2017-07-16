@@ -1,4 +1,4 @@
-import { CHANGE_PARTIAL_CITY, CHANGE_MATCHING_CITIES } from '../constants/actionTypes';
+import { CHANGE_PARTIAL_CITY, CHANGE_MATCHING_CITIES, CHANGE_SELECTED_CITY, CHANGE_WEATHER_DATA } from '../constants/actionTypes';
 import objectAssign from 'object-assign';
 import initialState from './initialState';
 
@@ -20,7 +20,18 @@ export default function weatherReducer(state = initialState.weather, action) {
       newState = objectAssign({}, state);
       newState.matchingCities = action.matchingCities;
       return newState;
-      
+
+    case CHANGE_SELECTED_CITY:
+      newState = objectAssign({}, state);
+      newState.selectedCity = action.cityName;
+      newState.partialCity = action.cityName;
+      return newState;
+
+    case CHANGE_WEATHER_DATA:
+      newState = objectAssign({}, state);
+      newState.weatherData = action.weatherData;
+      return newState;
+
     default:
       return state;
   }

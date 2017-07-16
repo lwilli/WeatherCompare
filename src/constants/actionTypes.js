@@ -10,7 +10,8 @@ export const FETCH_MATCHING_CITIES_ERROR = 'WeatherCompare/FETCH_MATCHING_CITIES
 
 export const CHANGE_PARTIAL_CITY = 'WeatherCompare/CHANGE_PARTIAL_CITY';
 export const CHANGE_MATCHING_CITIES = 'WeatherCompare/CHANGE_MATCHING_CITIES';
-
+export const CHANGE_SELECTED_CITY = 'WeatherCompare/CHANGE_SELECTED_CITY';
+export const CHANGE_WEATHER_DATA = 'WeatherCompare/CHANGE_WEATHER_DATA';
 
 
 
