@@ -161,3 +161,20 @@ export function fetchMatchingCities(partialCity, cityNum) {
       });
   }
 }
+
+
+/**
+ * Changes the shouldDisplay for a city
+ *
+ * @param {number} cityNum The index of the city to change in the state
+ * @param {boolean} shouldDisplay The value to set
+ *
+ * @return {object} An action object with a type of CHANGE_MATCHING_CITIES
+ */
+export function changeShouldDisplay(cityNum, shouldDisplay) {
+  return {
+    type: actions.CHANGE_SHOULD_DISPLAY,
+    cityNum,
+    shouldDisplay
+  }
+}

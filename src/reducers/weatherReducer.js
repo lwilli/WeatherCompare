@@ -1,4 +1,4 @@
-import { CHANGE_PARTIAL_CITY, CHANGE_MATCHING_CITIES, CHANGE_SELECTED_CITY, CHANGE_WEATHER_DATA } from '../constants/actionTypes';
+import * as actions from '../constants/actionTypes';
 import objectAssign from 'object-assign';
 import initialState from './initialState';
 
@@ -11,7 +11,7 @@ export default function weatherReducer(state = initialState.weather, action) {
   let newState;
 
   switch (action.type) {
-    case CHANGE_PARTIAL_CITY:
+    case actions.CHANGE_PARTIAL_CITY:
       return objectAssign({}, state, {
         ...state,
         cities: state.cities.map(
@@ -19,7 +19,7 @@ export default function weatherReducer(state = initialState.weather, action) {
                                                        : content
         )
       });
-    case CHANGE_MATCHING_CITIES:
+    case actions.CHANGE_MATCHING_CITIES:
       return objectAssign({}, state, {
         ...state,
         cities: state.cities.map(
@@ -28,7 +28,7 @@ export default function weatherReducer(state = initialState.weather, action) {
         )
       });
 
-    case CHANGE_SELECTED_CITY:
+    case actions.CHANGE_SELECTED_CITY:
       return objectAssign({}, state, {
         ...state,
         cities: state.cities.map(
@@ -37,7 +37,7 @@ export default function weatherReducer(state = initialState.weather, action) {
         )
       });
 
-    case CHANGE_WEATHER_DATA:
+    case actions.CHANGE_WEATHER_DATA:
       return objectAssign({}, state, {
         ...state,
         cities: state.cities.map(
@@ -45,6 +45,15 @@ export default function weatherReducer(state = initialState.weather, action) {
                                                        : content
         )
       });
+
+    case actions.CHANGE_SHOULD_DISPLAY:
+      return objectAssign({}, state, {
+        ...state,
+        cities: state.cities.map(
+          (content, index) => index === action.cityNum ? {...content, shouldDisplay: action.shouldDisplay}
+                                                       : content
+        )
+      }); 
 
     default:
       return state;

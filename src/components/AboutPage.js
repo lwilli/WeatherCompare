@@ -8,7 +8,7 @@ const AboutPage = () => {
     <div>
       <h2 className="alt-header">About</h2>
       <p>
-        WeatherCompare is a simple web app built by Logan Williams that lets you compare weather between two cities.
+        WeatherCompare is a simple web app built by Logan Williams that lets you compare the current weather between two cities.
       </p>
     </div>
   );

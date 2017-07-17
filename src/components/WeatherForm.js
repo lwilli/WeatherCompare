@@ -23,6 +23,11 @@ class WeatherForm extends React.Component {
   onChangeSelectedCity(cityName) {
     this.props.changeSelectedCity(cityName, this.props.cityNum);
     
+    // set display to true for next weather form
+    this.props.changeShouldDisplay(this.props.cityNum + 1, true);
+
+    //TODO: set focus to next weather input 
+
     const cityLink = this.props.matchingCities.filter(function(city) {if (city.name == cityName) {return city.link}});
     this.props.fetchWeatherForCity(cityLink[0].link, this.props.cityNum);
   }
@@ -59,6 +64,7 @@ WeatherForm.propTypes = {
   fetchMatchingCities: PropTypes.func,
   changeSelectedCity: PropTypes.func,
   fetchWeatherForCity: PropTypes.func,
+  changeShouldDisplay: PropTypes.func,
 };
 
 export default WeatherForm;

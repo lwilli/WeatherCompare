@@ -12,7 +12,7 @@ export const WeatherPage = (props) => {
       <br/>
       <br/>
       {/* First city */}
-      {'Enter a city: '}
+      {'Enter the first city: '}
       <WeatherForm
         cityNum={0}
         loading={props.loading}
@@ -23,6 +23,7 @@ export const WeatherPage = (props) => {
         changePartialCity={props.actions.changePartialCity}
         changeSelectedCity={props.actions.changeSelectedCity}
         fetchWeatherForCity={props.actions.fetchWeatherForCity}
+        changeShouldDisplay={props.actions.changeShouldDisplay}
       />
       <br/>
       <WeatherDisplay
@@ -31,23 +32,30 @@ export const WeatherPage = (props) => {
       <br/>
       <br/>
 
-      {/* Second city */}
-      {'Enter a city: '}
-      <WeatherForm
-        cityNum={1}
-        loading={props.loading}
-        error={props.error}
-        partialCity={props.secondCity.partialCity}
-        matchingCities={props.secondCity.matchingCities}
-        fetchMatchingCities={props.actions.fetchMatchingCities}
-        changePartialCity={props.actions.changePartialCity}
-        changeSelectedCity={props.actions.changeSelectedCity}
-        fetchWeatherForCity={props.actions.fetchWeatherForCity}
-      />
-      <br/>
-      <WeatherDisplay
-        weatherData={props.secondCity.weatherData}
-      />
+      {/* Second city (only display if shouldDisplay) */}
+      {props.secondCity.shouldDisplay ? 
+        <div>
+          {'Enter the second city: '}
+          <WeatherForm
+            cityNum={1}
+            loading={props.loading}
+            error={props.error}
+            partialCity={props.secondCity.partialCity}
+            matchingCities={props.secondCity.matchingCities}
+            fetchMatchingCities={props.actions.fetchMatchingCities}
+            changePartialCity={props.actions.changePartialCity}
+            changeSelectedCity={props.actions.changeSelectedCity}
+            fetchWeatherForCity={props.actions.fetchWeatherForCity}
+            changeShouldDisplay={props.actions.changeShouldDisplay}
+          />
+          <br/>
+          <WeatherDisplay
+            weatherData={props.secondCity.weatherData}
+          />
+        </div>
+        :
+        <div></div>
+      }
     </div>
   );
 };
