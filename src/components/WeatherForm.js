@@ -10,21 +10,27 @@ class WeatherForm extends React.Component {
     this.onChangeSelectedCity = this.onChangeSelectedCity.bind(this);
   }
 
+  componentDidMount() {
+    // Focus the input
+    if (this.props.cityNum === 0) {this.input.focus();}
+  }
+
   cityKeypress(newPartialCity) {
-    this.props.changePartialCity(newPartialCity);
-    this.props.fetchMatchingCities(newPartialCity);
+    this.props.changePartialCity(newPartialCity, this.props.cityNum);
+    this.props.fetchMatchingCities(newPartialCity, this.props.cityNum);
   }
 
   onChangeSelectedCity(cityName) {
-    this.props.changeSelectedCity(cityName);
+    this.props.changeSelectedCity(cityName, this.props.cityNum);
     
     const cityLink = this.props.matchingCities.filter(function(city) {if (city.name == cityName) {return city.link}});
-    this.props.fetchWeatherForCity(cityLink[0].link);
+    this.props.fetchWeatherForCity(cityLink[0].link, this.props.cityNum);
   }
 
   render() {
     return (
         <Autocomplete
+          ref={el => this.input = el}
           getItemValue={(item) => item.name}
           items={this.props.matchingCities}
           renderItem={(item, isHighlighted) =>
@@ -34,13 +40,14 @@ class WeatherForm extends React.Component {
           }
           value={this.props.partialCity}
           onChange={(e) => this.cityKeypress(e.target.value)}
-          onSelect={(val) => this.onChangeSelectedCity(val)}
+          onSelect={(val) => this.onChangeSelectedCity(val, this.props.cityNum)}
         />
       );
   }
 }
 
 WeatherForm.propTypes = {
+  cityNum: PropTypes.number,
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([
     PropTypes.object,

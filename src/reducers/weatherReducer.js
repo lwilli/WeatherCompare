@@ -12,25 +12,39 @@ export default function weatherReducer(state = initialState.weather, action) {
 
   switch (action.type) {
     case CHANGE_PARTIAL_CITY:
-      newState = objectAssign({}, state);
-      newState.partialCity = action.partialCity;
-      return newState;
-
+      return objectAssign({}, state, {
+        ...state,
+        cities: state.cities.map(
+          (content, index) => index === action.cityNum ? {...content, partialCity: action.partialCity, weatherData: null} // null to clear weather data
+                                                       : content
+        )
+      });
     case CHANGE_MATCHING_CITIES:
-      newState = objectAssign({}, state);
-      newState.matchingCities = action.matchingCities;
-      return newState;
+      return objectAssign({}, state, {
+        ...state,
+        cities: state.cities.map(
+          (content, index) => index === action.cityNum ? {...content, matchingCities: action.matchingCities}
+                                                       : content
+        )
+      });
 
     case CHANGE_SELECTED_CITY:
-      newState = objectAssign({}, state);
-      newState.selectedCity = action.cityName;
-      newState.partialCity = action.cityName;
-      return newState;
+      return objectAssign({}, state, {
+        ...state,
+        cities: state.cities.map(
+          (content, index) => index === action.cityNum ? {...content, selectedCity: action.cityName, partialCity: action.cityName}
+                                                       : content
+        )
+      });
 
     case CHANGE_WEATHER_DATA:
-      newState = objectAssign({}, state);
-      newState.weatherData = action.weatherData;
-      return newState;
+      return objectAssign({}, state, {
+        ...state,
+        cities: state.cities.map(
+          (content, index) => index === action.cityNum ? {...content, weatherData: action.weatherData}
+                                                       : content
+        )
+      });
 
     default:
       return state;

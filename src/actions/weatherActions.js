@@ -26,13 +26,15 @@ function parseJSON(response) {
  * Updates the selected city
  * 
  * @param  {string} cityName The fully qualified city name
+ * @param {number} cityNum The index of the city to change in the state
  *
  * @return {object} An action object with a type of CHANGE_SELECTED_CITY
  */
-export function changeSelectedCity(cityName) {
+export function changeSelectedCity(cityName, cityNum) {
   return {
     type: actions.CHANGE_SELECTED_CITY,
-    cityName
+    cityName,
+    cityNum
   }
 }
 
@@ -40,14 +42,16 @@ export function changeSelectedCity(cityName) {
 /**
  * Changes the weather data
  * 
- * @param  {object} weatherData The weatherData to set
+ * @param {object} weatherData The weatherData to set
+ * @param {number} cityNum The index of the city to change in the state
  *
  * @return {object} An action object with a type of CHANGE_WEATHER_DATA
  */
-export function changeWeatherData(weatherData) {
+export function changeWeatherData(weatherData, cityNum) {
   return {
     type: actions.CHANGE_WEATHER_DATA,
-    weatherData
+    weatherData,
+    cityNum
   }
 }
 
@@ -64,15 +68,12 @@ function consoleLog(data) {
 /**
  * DarkSky weather request/response handler (API call)
  */
-export function fetchWeatherForCity(cityLink) {
-  console.log('fetching cityLink: ', cityLink);
+export function fetchWeatherForCity(cityLink, cityNum) {
   return dispatch => {
     fetch(cityLink)
-      .then(consoleLog)
       .then(checkStatus)
       .then(parseJSON)
       .then(getLatLong)
-      .then(consoleLog)
       .then(function(coordinates) {
         const darkSkyURL = `https://api.darksky.net/forecast/${darkSkyKey}/${coordinates.latitude},${coordinates.longitude}`;
         fetch(corsAnywhere + darkSkyURL)
@@ -80,7 +81,7 @@ export function fetchWeatherForCity(cityLink) {
           .then(parseJSON)
           .then(function(data) {
             //console.log('DarkSky weather request succeeded with JSON response', data);
-            dispatch(changeWeatherData(data));
+            dispatch(changeWeatherData(data, cityNum));
           }).catch(function(error) {
             console.error('DarkSky weather request failed', error);
           })
@@ -113,13 +114,15 @@ function simplifyAutocompleteResponse(data) {
  * Changes the input field of the form for city name and updates the matching cities
  *
  * @param  {string} partialCity The new text of the city input field
+ * @param {number} cityNum The index of the city to change in the state
  *
  * @return {object} An action object with a type of CHANGE_PARTIAL_CITY
  */
-export function changePartialCity(partialCity) {
+export function changePartialCity(partialCity, cityNum) {
   return {
     type: actions.CHANGE_PARTIAL_CITY,
-    partialCity
+    partialCity,
+    cityNum
   };
 }
 
@@ -127,13 +130,15 @@ export function changePartialCity(partialCity) {
  * Changes the matching cities
  *
  * @param  {array} matchingCities The new matching cities (e.g. [{'name': 'Atascadero', 'link': 'https://atascadero.org'}])
+ * @param {number} cityNum The index of the city to change in the state
  *
  * @return {object} An action object with a type of CHANGE_MATCHING_CITIES
  */
-export function changeMatchingCities(matchingCities) {
+export function changeMatchingCities(matchingCities, cityNum) {
   return {
     type: actions.CHANGE_MATCHING_CITIES,
-    matchingCities
+    matchingCities, 
+    cityNum
   }
 }
 
@@ -142,7 +147,7 @@ export function changeMatchingCities(matchingCities) {
  * 
  * @param {string} partialCity 
  */
-export function fetchMatchingCities(partialCity) {
+export function fetchMatchingCities(partialCity, cityNum) {
   return dispatch => {
     fetch(`https://api.teleport.org/api/cities/?search=${partialCity}`)
       .then(checkStatus)
@@ -150,7 +155,7 @@ export function fetchMatchingCities(partialCity) {
       .then(simplifyAutocompleteResponse)
       .then(function(matchingCities) {
         //console.log('City Autocomplete data: ', matchingCities);
-        dispatch(changeMatchingCities(matchingCities));
+        dispatch(changeMatchingCities(matchingCities, cityNum));
       }).catch(function(error) {
         console.error('City Autocomplete request failed', error);
       });
