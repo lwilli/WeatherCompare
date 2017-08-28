@@ -13,7 +13,7 @@ export const CHANGE_MATCHING_CITIES = 'WeatherCompare/CHANGE_MATCHING_CITIES';
 export const CHANGE_SELECTED_CITY = 'WeatherCompare/CHANGE_SELECTED_CITY';
 export const CHANGE_WEATHER_DATA = 'WeatherCompare/CHANGE_WEATHER_DATA';
 export const CHANGE_SHOULD_DISPLAY = 'WeatherCompare/CHANGE_SHOULD_DISPLAY';
-
+export const CLEAR_SELECTED_CITY = 'WeatherCompare/CLEAR_SELECTED_CITY';
 
 
 

@@ -2,12 +2,6 @@ export default {
   weather: {
     loading: false,
     error: false,
-    /*
-    partialCity: '',
-    selectedCity: '',
-    matchingCities: [],
-    weatherData: null,
-    */
     cities: [{
       partialCity: '', 
       selectedCity: '',

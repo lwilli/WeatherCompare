@@ -17,6 +17,7 @@ export const WeatherPage = (props) => {
         <WeatherForm
           cityNum={0}
           loading={props.loading}
+          nextCityIsSelected={props.secondCity.selectedCity !== ''}
           error={props.error}
           partialCity={props.firstCity.partialCity}
           matchingCities={props.firstCity.matchingCities}
@@ -31,7 +32,9 @@ export const WeatherPage = (props) => {
       }
       <WeatherDisplay
         city={props.firstCity.selectedCity}
+        cityNum={0}
         weatherData={props.firstCity.weatherData}
+        clearSelectedCity={props.actions.clearSelectedCity}
       />
       <br/>
       <br/>
@@ -55,7 +58,9 @@ export const WeatherPage = (props) => {
       }
       <WeatherDisplay
         city={props.secondCity.selectedCity}
+        cityNum={1}
         weatherData={props.secondCity.weatherData}
+        clearSelectedCity={props.actions.clearSelectedCity}
       />
     </Flexbox>
   );
@@ -63,12 +68,6 @@ export const WeatherPage = (props) => {
 
 WeatherPage.propTypes = {
   actions: PropTypes.object.isRequired,
-  /*
-  selectedCity: PropTypes.string,
-  partialCity: PropTypes.string,
-  matchingCities: PropTypes.array,
-  weatherData: PropTypes.object,
-  */
   firstCity: PropTypes.object,
   secondCity: PropTypes.object,
   loading: PropTypes.bool,
@@ -88,12 +87,6 @@ function mapStateToProps(state) {
   state = state.weatherReducer;
 
   return {
-    /*
-    selectedCity: state.selectedCity,
-    partialCity: state.partialCity,
-    matchingCities: state.matchingCities,
-    weatherData: state.weatherData,
-    */
     firstCity: state.cities[0],
     secondCity: state.cities[1],
     loading: state.loading,

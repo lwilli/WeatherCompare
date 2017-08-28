@@ -4,7 +4,7 @@ import {getDateString} from '../utils/dateHelper';
 import Flexbox from 'flexbox-react';
 
 // stateless functional component like FuelSavingsResults.js
-const WeatherDisplay = ({city, weatherData}) => {
+const WeatherDisplay = ({city, cityNum, weatherData, clearSelectedCity}) => {
 
   const selectCurrently = (valueName) => {
     return weatherData ? weatherData.currently[valueName] : null;
@@ -22,10 +22,18 @@ const WeatherDisplay = ({city, weatherData}) => {
     }
   }
 
+  // this.props.changeShouldDisplay(this.props.cityNum, false);
+
   const timezone = weatherData ? weatherData.timezone : null;
 
+  const clearIfSelected = () => {
+    if (weatherData) {
+      clearSelectedCity(cityNum);
+    }
+  }
+
   return (
-    <Flexbox flexDirection='column' alignItems='center'>
+    <Flexbox flexDirection='column' alignItems='center' onClick={() => clearIfSelected()}>
       <div style={{fontSize: '30px'}}>
         {city.split(',')[0]}
       </div>
@@ -44,7 +52,9 @@ const WeatherDisplay = ({city, weatherData}) => {
 
 WeatherDisplay.propTypes = {
   city: PropTypes.string,
-  weatherData: PropTypes.object
+  cityNum: PropTypes.number,
+  weatherData: PropTypes.object,
+  clearSelectedCity: PropTypes.func
 };
 
 export default WeatherDisplay;

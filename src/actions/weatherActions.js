@@ -178,3 +178,18 @@ export function changeShouldDisplay(cityNum, shouldDisplay) {
     shouldDisplay
   }
 }
+
+
+/**
+ * Clear the selected city (return to the form)
+ *
+ * @param {number} cityNum The index of the city to change in the state
+ *
+ * @return {object} An action object with a type of CLEAR_SELECTED_CITY
+ */
+export function clearSelectedCity(cityNum) {
+  return {
+    type: actions.CLEAR_SELECTED_CITY,
+    cityNum
+  }
+}

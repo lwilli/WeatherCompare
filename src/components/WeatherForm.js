@@ -23,11 +23,11 @@ class WeatherForm extends React.Component {
   onChangeSelectedCity(cityName) {
     this.props.changeSelectedCity(cityName, this.props.cityNum);
     
-    // set display to true for next weather form
+    // set display to true for next weather form if not already filled
     this.props.changeShouldDisplay(this.props.cityNum, false);
-    this.props.changeShouldDisplay(this.props.cityNum + 1, true);
-
-    //TODO: set focus to next weather input 
+    if (!this.props.nextCityIsSelected) {
+      this.props.changeShouldDisplay(this.props.cityNum + 1, true);
+    }
 
     const cityLink = this.props.matchingCities.filter(function(city) {if (city.name == cityName) {return city.link}});
     this.props.fetchWeatherForCity(cityLink[0].link, this.props.cityNum);
@@ -56,6 +56,7 @@ class WeatherForm extends React.Component {
 WeatherForm.propTypes = {
   cityNum: PropTypes.number,
   loading: PropTypes.bool,
+  nextCityIsSelected: PropTypes.bool,
   error: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool,

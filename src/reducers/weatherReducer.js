@@ -55,6 +55,20 @@ export default function weatherReducer(state = initialState.weather, action) {
         )
       }); 
 
+      case actions.CLEAR_SELECTED_CITY:
+      return objectAssign({}, state, {
+        ...state,
+        cities: state.cities.map(
+          (content, index) => index === action.cityNum ? {...content, 
+                                                          partialCity: '',
+                                                          selectedCity: '',
+                                                          matchingCities: [],
+                                                          weatherData: null,
+                                                          shouldDisplay: true}
+                                                       : content
+        )
+      });
+
     default:
       return state;
   }
