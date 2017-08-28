@@ -30,6 +30,7 @@
   "author": "Logan Williams",
   "license": "MIT",
   "dependencies": {
+    "flexbox-react": "4.4.0",
     "object-assign": "4.1.0",
     "react": "15.5.4",
     "react-autocomplete": "1.5.9",

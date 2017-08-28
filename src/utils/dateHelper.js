@@ -1,11 +1,18 @@
-// Given a datetime in unix ms, returns a nicely formatted date string
-export function getDateString(ms) {
-  const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
+var moment = require('moment-timezone');
+var moment = require('moment');
+
+// Given a datetime in unix seconds, returns a nicely formatted date string
+export function getDateString(time, timezone) {
+  // const dayNames = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT'];
+  // const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC'];
+
+  const dateFormat = "ddd | MMM D | h:mm A";
   var dateStr = '';
 
-  if (ms) {
-    var date = new Date(ms * 1000);
+  if (time) {
+    var dateStr = moment.unix(time).tz(timezone).format(dateFormat).toUpperCase();
+    /*
+    var date = new Date(time * 1000);
     var dayOfWeekName = dayNames[date.getDay()];
     var monthName = monthNames[date.getMonth()];
     var dayOfMonth = date.getDate();
@@ -15,7 +22,8 @@ export function getDateString(ms) {
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
 
-    dateStr = dayOfWeekName + ' | ' + monthName + ' ' + dayOfMonth + ' | ' + hours + ':' + padLeadingZero(minutes) + ampm;
+    dateStr = dayOfWeekName + ' | ' + monthName + ' ' + dayOfMonth + ' | ' + hours + ':' + padLeadingZero(minutes) + ' ' + ampm;
+    */
   }
 
   return dateStr;

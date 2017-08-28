@@ -5,28 +5,32 @@ import {bindActionCreators} from 'redux';
 import * as actions from '../actions/weatherActions';
 import WeatherForm from '../components/WeatherForm';
 import WeatherDisplay from '../components/WeatherDisplay';
+import Flexbox from 'flexbox-react';
 
 export const WeatherPage = (props) => {
   return (
-    <div>
+    <Flexbox flexDirection='column' alignItems='center'>
       <br/>
       <br/>
       {/* First city */}
-      {'Enter the first city: '}
-      <WeatherForm
-        cityNum={0}
-        loading={props.loading}
-        error={props.error}
-        partialCity={props.firstCity.partialCity}
-        matchingCities={props.firstCity.matchingCities}
-        fetchMatchingCities={props.actions.fetchMatchingCities}
-        changePartialCity={props.actions.changePartialCity}
-        changeSelectedCity={props.actions.changeSelectedCity}
-        fetchWeatherForCity={props.actions.fetchWeatherForCity}
-        changeShouldDisplay={props.actions.changeShouldDisplay}
-      />
-      <br/>
+      {props.firstCity.shouldDisplay ? 
+        <WeatherForm
+          cityNum={0}
+          loading={props.loading}
+          error={props.error}
+          partialCity={props.firstCity.partialCity}
+          matchingCities={props.firstCity.matchingCities}
+          fetchMatchingCities={props.actions.fetchMatchingCities}
+          changePartialCity={props.actions.changePartialCity}
+          changeSelectedCity={props.actions.changeSelectedCity}
+          fetchWeatherForCity={props.actions.fetchWeatherForCity}
+          changeShouldDisplay={props.actions.changeShouldDisplay}
+        />
+        :
+        <div></div>
+      }
       <WeatherDisplay
+        city={props.firstCity.selectedCity}
         weatherData={props.firstCity.weatherData}
       />
       <br/>
@@ -34,8 +38,6 @@ export const WeatherPage = (props) => {
 
       {/* Second city (only display if shouldDisplay) */}
       {props.secondCity.shouldDisplay ? 
-        <div>
-          {'Enter the second city: '}
           <WeatherForm
             cityNum={1}
             loading={props.loading}
@@ -48,15 +50,14 @@ export const WeatherPage = (props) => {
             fetchWeatherForCity={props.actions.fetchWeatherForCity}
             changeShouldDisplay={props.actions.changeShouldDisplay}
           />
-          <br/>
-          <WeatherDisplay
-            weatherData={props.secondCity.weatherData}
-          />
-        </div>
         :
         <div></div>
       }
-    </div>
+      <WeatherDisplay
+        city={props.secondCity.selectedCity}
+        weatherData={props.secondCity.weatherData}
+      />
+    </Flexbox>
   );
 };
 

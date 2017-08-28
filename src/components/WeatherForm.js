@@ -12,7 +12,7 @@ class WeatherForm extends React.Component {
 
   componentDidMount() {
     // Focus the input
-    if (this.props.cityNum === 0) {this.input.focus();}
+    this.input.focus();
   }
 
   cityKeypress(newPartialCity) {
@@ -24,6 +24,7 @@ class WeatherForm extends React.Component {
     this.props.changeSelectedCity(cityName, this.props.cityNum);
     
     // set display to true for next weather form
+    this.props.changeShouldDisplay(this.props.cityNum, false);
     this.props.changeShouldDisplay(this.props.cityNum + 1, true);
 
     //TODO: set focus to next weather input 
@@ -46,6 +47,7 @@ class WeatherForm extends React.Component {
           value={this.props.partialCity}
           onChange={(e) => this.cityKeypress(e.target.value)}
           onSelect={(val) => this.onChangeSelectedCity(val, this.props.cityNum)}
+          inputProps={{placeholder: 'Enter a city name'}}
         />
       );
   }

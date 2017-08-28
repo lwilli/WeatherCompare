@@ -15,7 +15,7 @@ export default function weatherReducer(state = initialState.weather, action) {
       return objectAssign({}, state, {
         ...state,
         cities: state.cities.map(
-          (content, index) => index === action.cityNum ? {...content, partialCity: action.partialCity, weatherData: null} // null to clear weather data
+          (content, index) => index === action.cityNum ? {...content, selectedCity: '', partialCity: action.partialCity, weatherData: null} // null to clear weather data
                                                        : content
         )
       });
