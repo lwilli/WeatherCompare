@@ -9,60 +9,68 @@ import Flexbox from 'flexbox-react';
 
 export const WeatherPage = (props) => {
   return (
-    <Flexbox flexDirection='column' alignItems='center'>
-      <br/>
-      <br/>
-      {/* First city */}
-      {props.firstCity.shouldDisplay ? 
-        <WeatherForm
-          cityNum={0}
-          loading={props.loading}
-          nextCityIsSelected={props.secondCity.selectedCity !== ''}
-          error={props.error}
-          partialCity={props.firstCity.partialCity}
-          matchingCities={props.firstCity.matchingCities}
-          fetchMatchingCities={props.actions.fetchMatchingCities}
-          changePartialCity={props.actions.changePartialCity}
-          changeSelectedCity={props.actions.changeSelectedCity}
-          fetchWeatherForCity={props.actions.fetchWeatherForCity}
-          changeShouldDisplay={props.actions.changeShouldDisplay}
-        />
-        :
-        <div></div>
-      }
-      <WeatherDisplay
-        city={props.firstCity.selectedCity}
-        cityNum={0}
-        weatherData={props.firstCity.weatherData}
-        clearSelectedCity={props.actions.clearSelectedCity}
-      />
-      <br/>
-      <br/>
-
-      {/* Second city (only display if shouldDisplay) */}
-      {props.secondCity.shouldDisplay ? 
+    <div className='parent-container'>
+      <Flexbox className='top-container' alignItems="center" justifyContent="center">
+        {/* First city */}
+        {props.firstCity.shouldDisplay ? 
           <WeatherForm
-            cityNum={1}
+            cityNum={0}
             loading={props.loading}
+            nextCityIsSelected={props.secondCity.selectedCity !== ''}
             error={props.error}
-            partialCity={props.secondCity.partialCity}
-            matchingCities={props.secondCity.matchingCities}
+            partialCity={props.firstCity.partialCity}
+            matchingCities={props.firstCity.matchingCities}
             fetchMatchingCities={props.actions.fetchMatchingCities}
             changePartialCity={props.actions.changePartialCity}
             changeSelectedCity={props.actions.changeSelectedCity}
             fetchWeatherForCity={props.actions.fetchWeatherForCity}
             changeShouldDisplay={props.actions.changeShouldDisplay}
           />
-        :
-        <div></div>
-      }
-      <WeatherDisplay
-        city={props.secondCity.selectedCity}
-        cityNum={1}
-        weatherData={props.secondCity.weatherData}
-        clearSelectedCity={props.actions.clearSelectedCity}
-      />
-    </Flexbox>
+          :
+          <div></div>
+        }
+        {props.firstCity.selectedCity ?
+          <WeatherDisplay
+            city={props.firstCity.selectedCity}
+            cityNum={0}
+            weatherData={props.firstCity.weatherData}
+            clearSelectedCity={props.actions.clearSelectedCity}
+          />
+          :
+          <div></div>
+        }
+      </Flexbox>
+
+      <Flexbox className='bottom-container' alignItems="center" justifyContent="center">
+        {/* Second city (only display if shouldDisplay) */}
+        {props.secondCity.shouldDisplay ? 
+            <WeatherForm
+              cityNum={1}
+              loading={props.loading}
+              error={props.error}
+              partialCity={props.secondCity.partialCity}
+              matchingCities={props.secondCity.matchingCities}
+              fetchMatchingCities={props.actions.fetchMatchingCities}
+              changePartialCity={props.actions.changePartialCity}
+              changeSelectedCity={props.actions.changeSelectedCity}
+              fetchWeatherForCity={props.actions.fetchWeatherForCity}
+              changeShouldDisplay={props.actions.changeShouldDisplay}
+            />
+          :
+          <div></div>
+        }
+        {props.secondCity.selectedCity ?
+          <WeatherDisplay height='50%' width='100%'
+            city={props.secondCity.selectedCity}
+            cityNum={1}
+            weatherData={props.secondCity.weatherData}
+            clearSelectedCity={props.actions.clearSelectedCity}
+          />
+          :
+          <div></div>
+        }
+      </Flexbox>
+    </div>
   );
 };
 

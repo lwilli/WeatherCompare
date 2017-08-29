@@ -36,6 +36,7 @@ class WeatherForm extends React.Component {
   render() {
     return (
         <Autocomplete
+          className='weather-form'
           ref={el => this.input = el}
           getItemValue={(item) => item.name}
           items={this.props.matchingCities}
