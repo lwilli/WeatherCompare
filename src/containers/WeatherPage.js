@@ -10,7 +10,7 @@ import Flexbox from 'flexbox-react';
 export const WeatherPage = (props) => {
   return (
     <div className='parent-container'>
-      <Flexbox className='top-container' alignItems="center" justifyContent="center">
+      <Flexbox className='top-container' alignItems={props.firstCity.shouldDisplay ? 'flex-start' : 'center'} justifyContent="center" style={{background: props.firstCity.backgroundColor}}>
         {/* First city */}
         {props.firstCity.shouldDisplay ? 
           <WeatherForm
@@ -40,8 +40,8 @@ export const WeatherPage = (props) => {
           <div></div>
         }
       </Flexbox>
-
-      <Flexbox className='bottom-container' alignItems="center" justifyContent="center">
+      <hr className='divider'/>
+      <Flexbox className='bottom-container' alignItems={props.secondCity.shouldDisplay ? 'flex-start' : 'center'} justifyContent="center" style={{background: props.secondCity.backgroundColor}}>
         {/* Second city (only display if shouldDisplay) */}
         {props.secondCity.shouldDisplay ? 
             <WeatherForm

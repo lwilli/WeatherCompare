@@ -75,12 +75,12 @@ export function fetchWeatherForCity(cityLink, cityNum) {
       .then(parseJSON)
       .then(getLatLong)
       .then(function(coordinates) {
-        const darkSkyURL = `https://api.darksky.net/forecast/${darkSkyKey}/${coordinates.latitude},${coordinates.longitude}`;
+        const darkSkyURL = `https://api.darksky.net/forecast/${darkSkyKey}/${coordinates.latitude},${coordinates.longitude}?exclude=minutely,hourly,daily,flags,alerts`;
         fetch(corsAnywhere + darkSkyURL)
           .then(checkStatus)
           .then(parseJSON)
           .then(function(data) {
-            //console.log('DarkSky weather request succeeded with JSON response', data);
+            console.log('DarkSky response:', data);
             dispatch(changeWeatherData(data, cityNum));
           }).catch(function(error) {
             console.error('DarkSky weather request failed', error);
@@ -154,7 +154,7 @@ export function fetchMatchingCities(partialCity, cityNum) {
       .then(parseJSON)
       .then(simplifyAutocompleteResponse)
       .then(function(matchingCities) {
-        //console.log('City Autocomplete data: ', matchingCities);
+        console.log('City Autocomplete data: ', matchingCities);
         dispatch(changeMatchingCities(matchingCities, cityNum));
       }).catch(function(error) {
         console.error('City Autocomplete request failed', error);

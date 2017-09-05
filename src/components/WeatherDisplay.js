@@ -33,18 +33,23 @@ const WeatherDisplay = ({city, cityNum, weatherData, clearSelectedCity}) => {
   }
 
   return (
-    <Flexbox flexDirection='column' alignItems='center' onClick={() => clearIfSelected()}>
-      <div style={{fontSize: '30px'}}>
-        {city.split(',')[0]}
+    <Flexbox className='weather-display' flexDirection='column' alignItems='center' onClick={() => clearIfSelected()}>
+      <div style={{fontSize: '1.8em', textAlign: 'center'}}>
+        {city.split(',')[0].toUpperCase()}
       </div>
-      <div style={{fontSize: '15px'}}>
-        {getGreaterArea(city)}
+      <div style={{fontSize: '0.8em', textAlign: 'center'}}>
+        {getGreaterArea(city).toUpperCase()}
       </div>
-      <div>
+      <div style={{fontSize: '0.8em', textAlign: 'center'}}>
         {getDateString(selectCurrently('time'), timezone)}
       </div>
-      <div style={{fontSize: '50px', padding: '10px'}}>
-        {selectCurrently('temperature') ? selectCurrently('temperature') + '°' : null}
+      <div id='temp-wrapper' style={{ padding: '0px', marginTop: '50px', textAlign: 'center'}}>
+        <div id='temp-number' style={{fontSize: '6em', textAlign: 'center', display: 'inline-block'}}>
+          {selectCurrently('temperature') ? Math.round(selectCurrently('temperature')) : null}
+        </div>
+        <div id='degree-icon' style={{fontSize: '3em', textAlign: 'center', padding: '0px', position: 'relative', top: '-0.35em', display: 'inline-block', width: 0, height: 0, verticalAlign: 'top'}}>
+          °
+        </div>
       </div>
     </Flexbox>
   );

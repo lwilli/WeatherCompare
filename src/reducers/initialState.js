@@ -7,6 +7,7 @@ export default {
       selectedCity: '',
       matchingCities: [],
       weatherData: null,
+      backgroundColor: '#fafafa',
       shouldDisplay: true,
     },
     {
@@ -14,6 +15,7 @@ export default {
       selectedCity: '',
       matchingCities: [],
       weatherData: null,
+      backgroundColor: '#fafafa',
       shouldDisplay: false,
     }],
   },

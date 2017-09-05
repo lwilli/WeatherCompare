@@ -1,6 +1,7 @@
 import * as actions from '../constants/actionTypes';
 import objectAssign from 'object-assign';
 import initialState from './initialState';
+import {colorForWeatherData} from '../utils/tempColors';
 
 // IMPORTANT: Note that with Redux, state should NEVER be changed.
 // State is considered immutable. Instead,
@@ -41,7 +42,10 @@ export default function weatherReducer(state = initialState.weather, action) {
       return objectAssign({}, state, {
         ...state,
         cities: state.cities.map(
-          (content, index) => index === action.cityNum ? {...content, weatherData: action.weatherData}
+          (content, index) => index === action.cityNum ? {...content, 
+                                                          weatherData: action.weatherData,
+                                                          backgroundColor: colorForWeatherData(action.weatherData)
+                                                         }
                                                        : content
         )
       });
@@ -64,7 +68,8 @@ export default function weatherReducer(state = initialState.weather, action) {
                                                           selectedCity: '',
                                                           matchingCities: [],
                                                           weatherData: null,
-                                                          shouldDisplay: true}
+                                                          shouldDisplay: true, 
+                                                          backgroundColor: '#fafafa'}
                                                        : content
         )
       });
