@@ -48,7 +48,7 @@ class WeatherForm extends React.Component {
           value={this.props.partialCity}
           onChange={(e) => this.cityKeypress(e.target.value)}
           onSelect={(val) => this.onChangeSelectedCity(val, this.props.cityNum)}
-          inputProps={{placeholder: 'Enter a city name', spellcheck: 'false'}}       
+          inputProps={{placeholder: 'Enter a city name'}}       
         />
       );
   }
