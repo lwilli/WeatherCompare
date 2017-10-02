@@ -1,9 +1,10 @@
 /* Variables */
-$vin-blue: #5bb7db;
-$vin-green: #60b044;
-$vin-red: #ff0000;
 $header-height: 40px;
-
+$header-items-color: #FFFFFF;
+$header-bg-color: #4d4d4d;
+$darksky-im-height: 60px;
+$bm-menu-pad-sides: 25px;
+$menu-list-items-color: #FFF;
 
 /* Styles */
 body {
@@ -35,24 +36,23 @@ div {
   padding: 0px;
 }
 
-.header {
-  //background-color: #f3f5f6;
+.header-bar {
   min-height: $header-height;
   max-height: $header-height;
-  margin-left: 10px;
-  margin-right: 10px;
+  font-family: 'Pacifico', cursive, sans-serif;  
+  font-weight: bold;
+  background-color: $header-bg-color;
 }
 
-.header div {
-  font-size: 26pt;
+#header-title {
+  font-size: 18pt;
+  color: $header-items-color;
 }
 
 .parent-container {
   height: -webkit-calc(100% - #{$header-height});
   height:    -moz-calc(100% - #{$header-height});
   height:         calc(100% - #{$header-height});
-  //height: 100%;
-
   padding: 0;
   margin: 0;
 }
@@ -62,17 +62,6 @@ div {
   margin: 0;
   max-height: 50%;
   min-height: 50%;
-  
-  /*
-  max-height: -webkit-calc(50% - #{$header-height} / 2);
-  max-height:    -moz-calc(50% - #{$header-height} / 2);
-  max-height:         calc(50% - #{$header-height} / 2);
-  
-  min-height: -webkit-calc(50% - #{$header-height} / 2);
-  min-height:    -moz-calc(50% - #{$header-height} / 2);
-  min-height:         calc(50% - #{$header-height} / 2);
-  */
-
   max-width: 100%;
   min-width: 100%;
   overflow: hidden;
@@ -100,3 +89,104 @@ input {
 }
 
 /*** (end WeatherDisplay) ***/
+
+
+
+/* -------- Sidebar --------- */
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px * 0.65;
+  height: 30px * 0.65;
+  left: 10px;
+  top: 10px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: $header-items-color;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  padding: 50px $bm-menu-pad-sides $bm-menu-pad-sides;
+  font-size: 1.15em;
+  overflow: hidden;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #FFFFFF;
+}
+
+/* List links */
+.bm-item-list a {
+  color: $menu-list-items-color;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/*************************/
+
+
+#placeholder-menu {
+  color: $header-bg-color;
+  margin-left: 10px;
+}
+
+.made-by-logan {
+  position: absolute;
+  padding-right: $bm-menu-pad-sides / 2;
+  padding-left: $bm-menu-pad-sides / 2;
+  bottom: $darksky-im-height + 25px;
+
+  font-weight: bold;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+hr.menu-divider { 
+  border: 0 none;
+  width: 75%;
+  height: 1px;
+  background-color:#EBEBEB;
+  color:#EBEBEB;
+  margin: 0px 0px;
+  position: absolute;
+  bottom: $darksky-im-height + 15px;
+}
+
+.darksky-image {
+  //width: 150px;
+  height: $darksky-im-height;
+}
+
+.powered-by-darksky {
+  position: absolute;
+  bottom: 0;
+}

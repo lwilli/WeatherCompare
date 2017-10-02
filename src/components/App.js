@@ -2,18 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, IndexLink } from 'react-router';
 import Flexbox from 'flexbox-react';
+import Menu from './Menu'
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
 class App extends React.Component {
   render() {
+    var body = document.body,
+    html = document.documentElement;
+    var height = Math.max( body.scrollHeight, body.offsetHeight, 
+                            html.clientHeight, html.scrollHeight, html.offsetHeight );
+
     return (
       <div width='100%' height='100%'>
-        <Flexbox className='header' alignItems='center' justifyContent='space-between' alignContent='center'>
-          ☰
-          <div>WeatherComp</div>
-          ↑
+        <Menu width={ '200px' }>
+            <a id="home" className="menu-item" href="/">Home</a>
+            <a id="about" className="menu-item" href="/about">About</a>
+            <div className="made-by-logan">Made by<br/>Logan Williams</div>
+            <hr className="menu-divider"/>
+            <a className="powered-by-darksky" href="https://darksky.net/poweredby/">
+              <img className="darksky-image" src='https://darksky.net/dev/img/attribution/poweredby-darkbackground.png'/>
+            </a>
+        </Menu>
+        <Flexbox className='header-bar' alignItems='center' justifyContent='space-between' alignContent='center'>
+          <p id='placeholder-menu'>☰</p>
+          <div id='header-title'>WeatherComp</div>
+          <p id='placeholder-menu'>↑</p>
         </Flexbox>
         {this.props.children}
       </div>

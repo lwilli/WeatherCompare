@@ -2,6 +2,7 @@ export default {
   weather: {
     loading: false,
     error: false,
+    sidebarOpen: false,
     cities: [{
       partialCity: '', 
       selectedCity: '',
