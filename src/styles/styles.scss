@@ -5,6 +5,7 @@ $header-bg-color: #4d4d4d;
 $darksky-im-height: 60px;
 $bm-menu-pad-sides: 25px;
 $menu-list-items-color: #FFF;
+$menu-list-items-color-hover: #6f6f6f;
 
 /* Styles */
 body {
@@ -144,6 +145,10 @@ input {
   padding-bottom: 0.4em;
   text-decoration: none;
   font-weight: bold;
+}
+
+.bm-item-list a:hover {
+  color: $menu-list-items-color-hover;
 }
 
 /* Styling of overlay */
