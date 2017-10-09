@@ -3,7 +3,6 @@
  */
 import * as actions from '../constants/actionTypes';
 import 'whatwg-fetch';
-import ReduxThunk from 'redux-thunk';
 
 const darkSkyKey = 'dec125ef6253125e9715cc3e96b650af';
 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
@@ -60,10 +59,12 @@ function getLatLong(resp) {
   return resp.location.latlon;
 }
 
+/*
 function consoleLog(data) {
   console.log(data);
   return data;
 }
+*/
 
 /**
  * DarkSky weather request/response handler (API call)

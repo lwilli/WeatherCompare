@@ -12,7 +12,7 @@ const WeatherDisplay = ({city, cityNum, weatherData, clearSelectedCity}) => {
   
   // returns state name if in U.S., otherwise country
   const getGreaterArea = (fullCity) => {
-    const parts = city.split(',');
+    const parts = fullCity.split(',');
     const last = parts[parts.length - 1].trim();
     if (last == 'United States') {
       return parts[1].trim(); //state
@@ -53,7 +53,7 @@ const WeatherDisplay = ({city, cityNum, weatherData, clearSelectedCity}) => {
       </div>
     </Flexbox>
   );
-}
+};
 
 WeatherDisplay.propTypes = {
   city: PropTypes.string,

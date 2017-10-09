@@ -29,7 +29,7 @@ class WeatherForm extends React.Component {
       this.props.changeShouldDisplay(this.props.cityNum + 1, true);
     }
 
-    const cityLink = this.props.matchingCities.filter(function(city) {if (city.name == cityName) {return city.link}});
+    const cityLink = this.props.matchingCities.filter(function(city) {if (city.name == cityName) {return city.link;}});
     this.props.fetchWeatherForCity(cityLink[0].link, this.props.cityNum);
   }
 

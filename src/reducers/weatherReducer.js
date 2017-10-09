@@ -9,8 +9,7 @@ import {colorForWeatherData} from '../utils/tempColors';
 // Note that I'm using Object.assign to create a copy of current state
 // and update values on the copy.
 export default function weatherReducer(state = initialState.weather, action) {
-  let newState;
-
+ 
   switch (action.type) {
     case actions.CHANGE_PARTIAL_CITY:
       return objectAssign({}, state, {

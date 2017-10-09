@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, IndexLink } from 'react-router';
+//import { Link, IndexLink } from 'react-router';
 import Flexbox from 'flexbox-react';
 import Menu from './Menu'
+
+require('../favicon.ico')
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
 class App extends React.Component {
   render() {
-    var body = document.body,
-    html = document.documentElement;
-    var height = Math.max( body.scrollHeight, body.offsetHeight, 
-                            html.clientHeight, html.scrollHeight, html.offsetHeight );
-
     return (
       <div width='100%' height='100%'>
         <Menu width={ '200px' }>
