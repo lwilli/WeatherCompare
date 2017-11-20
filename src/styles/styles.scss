@@ -45,6 +45,10 @@ div {
   background-color: $header-bg-color;
 }
 
+.header-bar a {
+  text-decoration: none;
+}
+
 #header-title {
   font-size: 18pt;
   color: $header-items-color;

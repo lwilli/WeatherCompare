@@ -13,7 +13,7 @@ const colorTempThresholds = {
   70: '#F7B267',
   80: '#F08A4B',
   95: '#CC2936'
-}
+};
 
 // Returns the color for the given temperature based on
 // the thresholds in colorTempTrhesholds

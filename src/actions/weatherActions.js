@@ -11,7 +11,7 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   } else {
-    var error = new Error(response.statusText);
+    const error = new Error(response.statusText);
     error.response = response;
     throw error;
   }
@@ -34,7 +34,7 @@ export function changeSelectedCity(cityName, cityNum) {
     type: actions.CHANGE_SELECTED_CITY,
     cityName,
     cityNum
-  }
+  };
 }
 
 
@@ -51,7 +51,7 @@ export function changeWeatherData(weatherData, cityNum) {
     type: actions.CHANGE_WEATHER_DATA,
     weatherData,
     cityNum
-  }
+  };
 }
 
 // gets lat/long from city link data
@@ -90,7 +90,7 @@ export function fetchWeatherForCity(cityLink, cityNum) {
       .catch(function(error) {
         console.error('Fetching city link failed', error);
       })
-  }
+  };
 }
 
 
@@ -140,7 +140,7 @@ export function changeMatchingCities(matchingCities, cityNum) {
     type: actions.CHANGE_MATCHING_CITIES,
     matchingCities, 
     cityNum
-  }
+  };
 }
 
 /**
@@ -160,7 +160,7 @@ export function fetchMatchingCities(partialCity, cityNum) {
       }).catch(function(error) {
         console.error('City Autocomplete request failed', error);
       });
-  }
+  };
 }
 
 
@@ -177,7 +177,7 @@ export function changeShouldDisplay(cityNum, shouldDisplay) {
     type: actions.CHANGE_SHOULD_DISPLAY,
     cityNum,
     shouldDisplay
-  }
+  };
 }
 
 
@@ -192,5 +192,5 @@ export function clearSelectedCity(cityNum) {
   return {
     type: actions.CLEAR_SELECTED_CITY,
     cityNum
-  }
+  };
 }
