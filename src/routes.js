@@ -4,7 +4,7 @@ import { createHistory } from 'history'
 
 import App from './components/App';
 import WeatherPage from './containers/WeatherPage';
-import AboutPage from './components/AboutPage';
+//import AboutPage from './components/AboutPage';
 import NotFoundPage from './components/NotFoundPage';
 
 const history = useRouterHistory(createHistory)({
@@ -14,7 +14,7 @@ const history = useRouterHistory(createHistory)({
 export default (
   <Route history={history} path="/WeatherCompare" component={App}>
     <IndexRoute component={WeatherPage}/>
-    <Route path="/WeatherCompare/about" component={AboutPage}/>
+    {/* <Route path="/WeatherCompare/about" component={AboutPage}/> */}
     <Route path="*" component={NotFoundPage}/>
   </Route>
 );

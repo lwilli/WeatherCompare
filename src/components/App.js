@@ -15,7 +15,7 @@ class App extends React.Component {
       <div width='100%' height='100%'>
         <Menu width={ '200px' }>
             <a id="home" className="menu-item" href="/WeatherCompare/">Home</a>
-            <a id="about" className="menu-item" href="/WeatherCompare/about">About</a>
+            {/* <a id="about" className="menu-item" href="/WeatherCompare/about">About</a> */}
             <div className="made-by-logan">Made by<br/>Logan Williams</div>
             <hr className="menu-divider"/>
             <a className="powered-by-darksky" href="https://darksky.net/poweredby/">
