@@ -16,7 +16,9 @@ class App extends React.Component {
         <Menu width={ '200px' }>
             <a id="home" className="menu-item" href="/WeatherCompare/">Home</a>
             {/* <a id="about" className="menu-item" href="/WeatherCompare/about">About</a> */}
-            <div className="made-by-logan">Made by<br/>Logan Williams</div>
+            <a href="https://lwilli.github.io/">
+              <div className="made-by-logan">Made by<br/>Logan Williams</div>
+            </a>
             <hr className="menu-divider"/>
             <a className="powered-by-darksky" href="https://darksky.net/poweredby/">
               <img className="darksky-image" src='https://darksky.net/dev/img/attribution/poweredby-darkbackground.png'/>
