@@ -4,8 +4,7 @@
 import * as actions from '../constants/actionTypes';
 import 'whatwg-fetch';
 
-const darkSkyKey = 'dec125ef6253125e9715cc3e96b650af';
-const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
+const weatherbitKey = "35932d8b0ef64f6082dff5aa1b30c3d2";
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -59,40 +58,33 @@ function getLatLong(resp) {
   return resp.location.latlon;
 }
 
-/*
-function consoleLog(data) {
-  console.log(data);
-  return data;
-}
-*/
 
 /**
- * DarkSky weather request/response handler (API call)
+ * Weatherbit.io weather request/response handler (API call)
  */
-export function fetchWeatherForCity(cityLink, cityNum) {
+ export function fetchWeatherForCity(cityLink, cityNum) {
   return dispatch => {
     fetch(cityLink)
       .then(checkStatus)
       .then(parseJSON)
       .then(getLatLong)
       .then(function(coordinates) {
-        const darkSkyURL = `https://api.darksky.net/forecast/${darkSkyKey}/${coordinates.latitude},${coordinates.longitude}?exclude=minutely,hourly,daily,flags,alerts`;
-        fetch(corsAnywhere + darkSkyURL)
+        const url = `https://api.weatherbit.io/v2.0/current?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=I&key=${weatherbitKey}`;
+        fetch(url)
           .then(checkStatus)
           .then(parseJSON)
           .then(function(data) {
-            console.log('DarkSky response:', data);
+            console.log('Weatherbit.io response:', data);
             dispatch(changeWeatherData(data, cityNum));
           }).catch(function(error) {
-            console.error('DarkSky weather request failed', error);
-          })
+            console.error('Weatherbit.io weather request failed', error);
+          });
       })
       .catch(function(error) {
         console.error('Fetching city link failed', error);
-      })
+      });
   };
 }
-
 
 /**
  * Takes the JSON response from Teleport API and returns just a list with the fqn and link

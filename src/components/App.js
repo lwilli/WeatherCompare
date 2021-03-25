@@ -20,8 +20,8 @@ class App extends React.Component {
               <div className="made-by-logan">Made by<br/>Logan Williams</div>
             </a>
             <hr className="menu-divider"/>
-            <a className="powered-by-darksky" href="https://darksky.net/poweredby/">
-              <img className="darksky-image" src='https://darksky.net/dev/img/attribution/poweredby-darkbackground.png'/>
+            <a href="https://www.weatherbit.io/">
+              <div className="weatherbit">Weather data by Weatherbit.io</div>
             </a>
         </Menu>
         <Flexbox className='header-bar' alignItems='center' justifyContent='space-between' alignContent='center'>

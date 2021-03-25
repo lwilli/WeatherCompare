@@ -6,8 +6,8 @@ import Flexbox from 'flexbox-react';
 // stateless functional component like FuelSavingsResults.js
 const WeatherDisplay = ({city, cityNum, weatherData, clearSelectedCity}) => {
 
-  const selectCurrently = (valueName) => {
-    return weatherData ? weatherData.currently[valueName] : null;
+  const selectData = (valueName) => {
+    return weatherData ? weatherData.data[0][valueName] : null;
   }
   
   // returns state name if in U.S., otherwise country
@@ -24,7 +24,7 @@ const WeatherDisplay = ({city, cityNum, weatherData, clearSelectedCity}) => {
 
   // this.props.changeShouldDisplay(this.props.cityNum, false);
 
-  const timezone = weatherData ? weatherData.timezone : null;
+  const timezone = weatherData ? selectData("timezone") : null;
 
   const clearIfSelected = () => {
     if (weatherData) {
@@ -41,11 +41,11 @@ const WeatherDisplay = ({city, cityNum, weatherData, clearSelectedCity}) => {
         {getGreaterArea(city).toUpperCase()}
       </div>
       <div style={{fontSize: '0.8em', textAlign: 'center'}}>
-        {getDateString(selectCurrently('time'), timezone)}
+        {getDateString(selectData('ts'), timezone)}
       </div>
       <div id='temp-wrapper' style={{ padding: '0px', marginTop: '50px', textAlign: 'center'}}>
         <div id='temp-number' style={{fontSize: '6em', textAlign: 'center', display: 'inline-block'}}>
-          {selectCurrently('temperature') ? Math.round(selectCurrently('temperature')) : null}
+          {selectData('temp') ? Math.round(selectData('temp')) : null}
         </div>
         <div id='degree-icon' style={{fontSize: '3em', textAlign: 'center', padding: '0px', position: 'relative', top: '-0.35em', display: 'inline-block', width: 0, height: 0, verticalAlign: 'top'}}>
           °

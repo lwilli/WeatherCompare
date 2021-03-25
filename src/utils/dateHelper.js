@@ -1,4 +1,4 @@
-var moment = require('moment-timezone');
+const moment = require('moment-timezone');
 
 // Given a datetime in unix seconds, returns a nicely formatted date string
 export function getDateString(time, timezone) {

@@ -23,5 +23,5 @@ function colorForTemp(temp) {
 
 // Given a weatherData object, returns the color for the current temp or white if null
 export function colorForWeatherData(weatherData) {
-  return weatherData ? colorForTemp(weatherData.currently['temperature']) : '000000';
+  return weatherData ? colorForTemp(weatherData.data[0]['temp']) : '000000';
 }

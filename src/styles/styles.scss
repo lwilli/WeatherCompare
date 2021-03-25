@@ -2,7 +2,7 @@
 $header-height: 40px;
 $header-items-color: #FFFFFF;
 $header-bg-color: #4d4d4d;
-$darksky-im-height: 60px;
+$weatherbit-height: 30px;
 $bm-menu-pad-sides: 25px;
 $menu-list-items-color: #FFF;
 $menu-list-items-color-hover: #6f6f6f;
@@ -172,7 +172,7 @@ input {
   position: absolute;
   padding-right: $bm-menu-pad-sides / 2;
   padding-left: $bm-menu-pad-sides / 2;
-  bottom: $darksky-im-height + 25px;
+  bottom: $weatherbit-height + 25px;
 
   font-weight: bold;
   font-size: 0.8em;
@@ -187,27 +187,16 @@ hr.menu-divider {
   color:#EBEBEB;
   margin: 0px 0px;
   position: absolute;
-  bottom: $darksky-im-height + 15px;
+  bottom: $weatherbit-height + 15px;
 }
 
-.darksky-image {
-  //width: 150px;
-  height: $darksky-im-height;
-}
-
-.powered-by-darksky {
+.weatherbit {
   position: absolute;
-  bottom: 0;
-}
+  // padding-right: $bm-menu-pad-sides / 2;
+  // padding-left: $bm-menu-pad-sides / 2;
+  bottom: 5px;
 
-@media (max-width:400px) {
-  .darksky-image-about {
-    width: 85%;
-  }
-}
-
-@media (min-width:400px) {
-  .darksky-image-about {
-    width: 400px;
-  }
+  font-weight: normal;
+  font-size: 0.6em;
+  text-align: center;
 }
