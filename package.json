@@ -31,7 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "flexbox-react": "4.4.0",
-    "moment-timezone": "0.5.33",
+    "moment-timezone": "0.5.35",
     "object-assign": "4.1.0",
     "react": "15.5.4",
     "react-autocomplete": "1.5.9",
